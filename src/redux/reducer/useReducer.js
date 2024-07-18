@@ -1,4 +1,6 @@
 import { ADDCARD } from "../action/types"
+import { REMOVECARD } from "../action/types"
+
 
 export const initialState = {
     addBasket :JSON.parse(localStorage.getItem("addBasket"))|| []
@@ -9,6 +11,12 @@ const reducer = (state = initialState,action) =>{
             localStorage.setItem("addBasket",JSON.stringify([...state.addBasket,action.foods]))
   return {
     addBasket:[...state.addBasket,action.foods]
+  }
+case REMOVECARD:
+  return {
+ 
+    addBasket:[...state.addBasket.filter(product=>product !==action.id)]
+
   }
   default:
   return state

@@ -3,8 +3,10 @@ import { Card, Table,Select,Popconfirm,message} from 'antd'
 import { ADDCARD } from '../redux/action/types'
 import { useDispatch } from 'react-redux'
 import { GiBasket } from "react-icons/gi";
+import { REMOVECARD } from "../redux/action/types"
 
 const MainTable = ({user}) => {
+ let dispatch = useDispatch()
     const columns = [
         {
           title: 'Rasmi',
@@ -24,17 +26,18 @@ const MainTable = ({user}) => {
         {
           title: 'Sotib olish',
           
+      
           render:(data)=>
           <Popconfirm
     title="Add Foods"
     description="Are you sure to add this foods?"
-    onConfirm={()=>confirm(data)}
+    onConfirm={()=>confirm(data.id)}
     onCancel={cancel}
     okText="Yes"
     cancelText="No"
     >
-    <button style={{background:'none',border:"none"}}>
-            <GiBasket style={{width:"50px",height:"50px"}}/>
+    <button style={{background:'none',border:"none",cursor:"pointer"}}>
+           ❌
           </button>
     </Popconfirm>
         }
@@ -50,9 +53,10 @@ const MainTable = ({user}) => {
           sortField: Array.isArray(sorter) ? undefined : sorter.field,
         });
       }
-      const confirm = (data) => {
-        dispatch({type:ADDCARD,foods:data})
-       
+      const confirm = (id) => {
+        
+        dispatch({type:REMOVECARD,id})
+        console.log(id);
         message.success('Food added ');
       };
       const cancel = (e) => {

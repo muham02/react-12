@@ -1,4 +1,5 @@
 import { Card, Table,Select,Popconfirm,message} from 'antd'
+import { TbBasketX } from "react-icons/tb";
 import Meta from 'antd/es/card/Meta'
 import axios from '../api'
 import React from 'react'
@@ -7,6 +8,7 @@ import { useState } from 'react'
 import { GiBasket } from "react-icons/gi";
 import { useDispatch } from 'react-redux'
 import { ADDCARD } from '../redux/action/types'
+
 const User = () => {
   const [data,setData] = useState([])
   const [tableParams, setTableParams] = useState({
@@ -34,6 +36,12 @@ const User = () => {
   const confirm = (data) => {
     dispatch({type:ADDCARD,foods:data})
     message.success('Food added ');
+button.disabled== true
+
+    if( data.id!==false){
+button.disabled== true
+    setIsDisabled(true)
+    }
     
   };
   const cancel = (e) => {
@@ -64,12 +72,12 @@ const User = () => {
           <Popconfirm
     title="Add Foods"
     description="Are you sure to add this foods?"
-    onConfirm={()=>confirm(data)}
+    onConfirm={()=>confirm(data) }
     onCancel={cancel}
     okText="Yes"
     cancelText="No"
   >
-   <button  style={{background:'none',border:"none"}}>
+   <button id='myBtn'  disabled={isDisabled}  style={{background:'none',border:"none"}}>
             <GiBasket style={{width:"50px",height:"50px"}}/>
           </button>
   </Popconfirm>
