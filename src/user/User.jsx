@@ -6,10 +6,12 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { GiBasket } from "react-icons/gi";
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { ADDCARD } from '../redux/action/types'
 
 const User = () => {
+  const addBasket = useSelector(state => state);
+  console.log(addBasket);
   const [data,setData] = useState([])
   const [tableParams, setTableParams] = useState({
     pagination: {

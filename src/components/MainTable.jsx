@@ -28,41 +28,23 @@ const MainTable = ({user}) => {
           
       
           render:(data)=>
-          <Popconfirm
-    title="Add Foods"
-    description="Are you sure to add this foods?"
-    onConfirm={()=>confirm(data.id)}
-    onCancel={cancel}
-    okText="Yes"
-    cancelText="No"
-    >
-    <button style={{background:'none',border:"none",cursor:"pointer"}}>
+       
+    <button onChange={()=>handleTableChange(data.id)} style={{background:'none',border:"none",cursor:"pointer"}}>
            ❌
           </button>
-    </Popconfirm>
         }
        
       
       ];
     
-      const handleTableChange = (pagination, filters, sorter) => {
-        setTableParams({
-          pagination,
-          filters,
-          sortOrder: Array.isArray(sorter) ? undefined : sorter.order,
-          sortField: Array.isArray(sorter) ? undefined : sorter.field,
-        });
-      }
-      const confirm = (id) => {
-        
-        dispatch({type:REMOVECARD,id})
+    
+      const handleTableChange = (id) => {
         console.log(id);
+        dispatch({type:REMOVECARD,id})
+        console.log(id);  
         message.success('Food added ');
       };
-      const cancel = (e) => {
-        console.log(e);
-        message.error('No food added');
-      };
+   
       const [tableParams, setTableParams] = useState({
         pagination: {
           current: 1,
@@ -81,7 +63,7 @@ const MainTable = ({user}) => {
          };
   return (
    <>
-    <Table  dataSource={user} columns={columns} onChange={handleTableChange}   pagination={tableParams.pagination} />
+    <Table  dataSource={user} columns={columns}    pagination={tableParams.pagination} />
     <Select onChange={handleChange}
     defaultValue="10"
     style={{

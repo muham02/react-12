@@ -8,16 +8,16 @@ export const initialState = {
 const reducer = (state = initialState,action) =>{
     switch(action.type){
         case ADDCARD:
-            localStorage.setItem("addBasket",JSON.stringify([...state.addBasket,action.foods]))
+       
   return {
     addBasket:[...state.addBasket,action.foods]
   }
 case REMOVECARD:
   return {
- 
-    addBasket:[...state.addBasket.filter(product=>product !==action.id)]
+    addBasket:[...state.addBasket.filter(product=>product !==action.data.id)]
 
   }
+
   default:
   return state
     }

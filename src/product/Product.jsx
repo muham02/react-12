@@ -8,7 +8,7 @@ const Product = () => {
   const {addBasket} = useSelector(state=>state)
 
 
-
+ 
 
  
   return (
